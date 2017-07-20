@@ -20,7 +20,7 @@ describe("#save") do
   it("lets you save stylists to the database") do
     stylist = Stylist.new("Jane", nil)
     stylist.save()
-    expect(Stylist.all()).to(eq([list]))
+    expect(Stylist.all()).to(eq([stylist]))
   end
 end
 describe("#==") do
@@ -39,4 +39,12 @@ it("returns a Stylist by its ID") do
   expect(Stylist.find(test_stylist2.id())).to(eq(test_stylist2))
 end
 end
+describe("#update") do
+    it("lets you update lists in the database") do
+      stylist = Stylist.new("Jack", nil)
+      stylist.save()
+      stylist.update("Jane")
+      expect(stylist.name()).to(eq("Jane"))
+    end
+  end
 end
