@@ -1,0 +1,11 @@
+  <form action="/stylists" method="post">
+    <label for="name">Assign a name to your stylist:</label>
+    <input id="name" name="name" type="text">
+
+    <button type="submit" id="addStylist">Add stylist</button>
+  </form>
+  <ul>
+    <% @stylists.each do |stylist| %>
+    <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
