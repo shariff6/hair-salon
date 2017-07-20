@@ -29,4 +29,11 @@ describe(Client) do
     expect(Client.all()).to(eq([test_client]))
   end
 end
+describe("#==") do
+  it("is the same client if it has the same description") do
+    client1 = Client.new("Jane", nil)
+    client2 = Client.new("Jane", nil)
+    expect(client1).to(eq(client2))
+  end
+end
 end
