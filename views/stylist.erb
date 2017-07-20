@@ -6,3 +6,9 @@
 <div class="container">
   <a href="/">Home</a>
 </div>
+
+<form action="/stylists/<%= @stylist.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete list</button>
+</form>
