@@ -1,7 +1,7 @@
 <ul>
   <% @clienties.each() do |client| %>
-    <li><%= client.name%></li>
-  <% end %>
+    <li><a href="/clients/<%= client.name()%>"><%= client.name() %></a> </li>
+    <%end%>
 </ul>
 <div class="container">
   <a href="/">Home</a>

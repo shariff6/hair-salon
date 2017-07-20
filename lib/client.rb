@@ -26,6 +26,6 @@ class Client
   end
 
   define_method(:delete) do
-    DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
+    DB.exec("DELETE FROM clients WHERE name = #{self.name()};")
   end
 end
