@@ -31,4 +31,15 @@ describe("#==") do
     expect(client1).to(eq(client2))
   end
 end
+describe(".find") do
+it("returns a client by its name") do
+  test_stylist = Stylist.new("jack", nil)
+  test_stylist.save()
+  test_client = Client.new("Jane", test_stylist.id)
+  test_client.save()
+  test_client2 = Client.new("June",test_stylist.id)
+  test_client2.save()
+  expect(Client.find(test_client2.name())).to(eq(test_client2))
+end
+end
 end
