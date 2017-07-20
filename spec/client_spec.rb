@@ -1,9 +1,4 @@
-require("rspec")
-  require("pg")
-  require("client")
-
-DB = PG.connect({:dbname => "hair_salon_test"})
-
+require "spec_helper"
 describe(Client) do
   describe("name")do
     it("lets you see the clients") do

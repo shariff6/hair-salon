@@ -1,15 +1,4 @@
-require("rspec")
-  require("pg")
-  require("stylist")
-
-DB = PG.connect({:dbname => "hair_salon_test"})
-
-RSpec.configure do |config|
-  config.after(:each) do
-    DB.exec("DELETE FROM stylists *;")
-    DB.exec("DELETE FROM clients *;")
-  end
-end
+require "spec_helper"
 describe(Stylist) do
   describe(".all") do
     it("starts off with no stylists") do
