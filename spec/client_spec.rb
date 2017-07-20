@@ -16,4 +16,10 @@ describe(Client) do
       expect(Client.all()).to(eq([]))
     end
   end
+  describe("#stylist_id") do
+   it("lets you read the stylist ID out") do
+      test_client = Client.new("Jane", 1)
+     expect(test_client.stylist_id()).to(eq(1))
+   end
+ end
 end
