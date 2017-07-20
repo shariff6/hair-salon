@@ -45,7 +45,7 @@ describe("#update") do
       stylist.delete()
       expect(Stylist.all()).to(eq([stylist2]))
     end
-    it("deletes a stylist's tasks from the database") do
+    it("deletes a stylist's clients from the database") do
      stylist = Stylist.new("Jane", nil)
      stylist.save()
      client = Client.new("jack", stylist.id())
@@ -56,4 +56,16 @@ describe("#update") do
     expect(Client.all()).to(eq([]))
    end
   end
+
+  describe("#clients") do
+      it("returns an array of clients for that Stylist") do
+        test_stylist = Stylist.new("Jane",nil)
+        test_stylist.save()
+        test_client = Client.new("jill", test_stylist.id())
+        test_client.save()
+        test_client2 = Client.new("Ruby", test_stylist.id())
+        test_client2.save()
+        expect(test_stylist.clients()).to(eq([test_client, test_client2]))
+      end
+    end
 end

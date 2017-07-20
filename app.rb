@@ -5,17 +5,27 @@ require("./lib/stylist")
 require("./lib/client")
 require('pg')
 
-DB = PG.connect({:dbname => "to_do"})
+DB = PG.connect({:dbname => "hair_salon"})
 
 get("/") do
   @clients = Client.all()
   @stylists = Stylist.all()
   erb(:index)
 end
-
 post("/stylists") do
+  @clients = Client.all()
+  @stylists = Stylist.all()
   name = params.fetch("name")
   stylist = Stylist.new(name, nil)
   stylist.save
   erb(:index)
+end
+post("/clients") do
+    @stylists = Stylist.all()
+    name = params.fetch("name")
+    stylist_id = params.fetch("stylist_id").to_i()
+    @stylist = Stylist.find(stylist_id)
+    @client = Client.new(name, stylist_id)
+    @client.save()
+    erb(:index)
 end
