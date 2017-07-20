@@ -4,8 +4,27 @@
 
     <button type="submit" id="addStylist">Add stylist</button>
   </form>
+
+
+  <form action="/clients" method="post">
+    <label for="stylist_id">Select a Stylist</label>
+    <select id='stylist_id' name='stylist_id' type='text'>
+      <% @stylists.each() do |stylist| %>
+        <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
+      <% end %>
+    </select>
+
+    <label for="name">Name of the client:</label>
+    <input id="name" name="name" type="text">
+
+    <button type="submit">Add client</button>
+  </form>
+  <% if @stylists.any?() %>
   <ul>
     <% @stylists.each do |stylist| %>
     <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
     <% end %>
   </ul>
+  <% else %>
+  <p>There are no stylists yet!</p>
+  <% end %>
