@@ -11,14 +11,14 @@ class Client
     clients = []
     returned_clients.each do |client|
       name = client.fetch("name")
-      stylist_id = name.fetch("stylist_id").to_i()
+      stylist_id = client.fetch("stylist_id").to_i()
       clients.push(Client.new(name, stylist_id))
     end
     clients
   end
 
   define_method(:save) do
-    DB.exec("INSERT INTO clients (description, stylist_id) VALUES ('#{@description}', #{@stylist_id_});")
+  DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
   end
 
   define_method(:==) do |another_client|
