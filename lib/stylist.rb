@@ -32,4 +32,9 @@ define_singleton_method(:find) do |id|
 end
 found_stylist
 end
+define_method(:update) do |name|
+  @name = name
+  @id = self.id()
+  DB.exec("UPDATE stylists SET name = '#{@name}' WHERE id = #{@id};")
+end
 end
