@@ -1,8 +1,8 @@
 class Client
   attr_reader(:name, :stylist_id)
 
-  define_method(:initialize) do |description, stylist_id|
-    @description = description
+  define_method(:initialize) do |name, stylist_id|
+    @name = name
     @stylist_id = stylist_id
   end
 
