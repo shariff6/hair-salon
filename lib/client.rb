@@ -24,4 +24,8 @@ class Client
   define_method(:==) do |another_client|
     self.name().==(another_client.name()).&(self.stylist_id().==(another_client.stylist_id()))
   end
+
+  define_method(:delete) do
+    DB.exec("DELETE FROM clients WHERE stylist_id = #{self.id()};")
+  end
 end
