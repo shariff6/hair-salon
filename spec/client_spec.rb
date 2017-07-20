@@ -22,4 +22,11 @@ describe(Client) do
      expect(test_client.stylist_id()).to(eq(1))
    end
  end
+ describe("#save") do
+  it("adds a client to the array of saved clients") do
+    test_client = Client.new("jack" , 1)
+    test_client.save()
+    expect(Client.all()).to(eq([test_client]))
+  end
+end
 end
