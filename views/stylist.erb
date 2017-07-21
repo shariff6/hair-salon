@@ -1,21 +1,13 @@
+<h1><%= @stylist.name() %>  </h1>
+
+<h2>Clients;</h2>
 <ul>
   <% @clienties.each() do |client| %>
     <li><a href="/clients/<%= client.name()%>"><%= client.name() %></a> </li>
     <%end%>
 </ul>
+
 <div class="container">
   <a href="/">Home</a>
+  <a href="/stylists/<%= @stylist.id() %>/edit">Edit This Stylist</a>
 </div>
-
-<form action="/stylists/<%= @stylist.id() %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete list</button>
-</form>
-<form action="/stylists/<%= @stylist.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="name">Rename your stylist:</label>
-  <input id="name" name="name" type="text">
-
-  <button type="submit">Update</button>
-</form>
