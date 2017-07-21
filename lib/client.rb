@@ -10,7 +10,7 @@ class Client
     returned_clients = DB.exec("SELECT * FROM clients;")
     clients = []
     returned_clients.each do |client|
-      name = client.fetch("name")
+      name = client.fetch("names")
       stylist_id = client.fetch("stylist_id").to_i()
       clients.push(Client.new(name, stylist_id))
     end
@@ -21,8 +21,8 @@ class Client
     self.name().==(another_client.name()).&(self.stylist_id().==(another_client.stylist_id()))
   end
 
-  define_method(:delete) do
-    DB.exec("DELETE FROM clients WHERE name = #{self.name()};")
+  define_singleton_method(:delete) do |name|
+    DB.exec("DELETE FROM clients WHERE names = ('#{name.name()}');")
   end
 
 define_singleton_method(:find) do |name|
@@ -36,6 +36,6 @@ end
 end
 
 define_method(:save) do
-DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
+DB.exec("INSERT INTO clients (names, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
 end
 end
