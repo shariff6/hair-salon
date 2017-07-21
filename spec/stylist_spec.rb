@@ -48,9 +48,9 @@ describe("#update") do
     it("deletes a stylist's clients from the database") do
      stylist = Stylist.new("Jane", nil)
      stylist.save()
-     client = Client.new("jack", stylist.id())
+     client = Client.new("jack", stylist.id(), 1)
      client.save()
-     client2 = Client.new("john", stylist.id())
+     client2 = Client.new("john", stylist.id(), 2)
      client2.save()
      stylist.delete()
     expect(Client.all()).to(eq([]))
@@ -61,9 +61,9 @@ describe("#update") do
       it("returns an array of clients for that Stylist") do
         test_stylist = Stylist.new("Jane",nil)
         test_stylist.save()
-        test_client = Client.new("jill", test_stylist.id())
+        test_client = Client.new("jill", test_stylist.id(),  1)
         test_client.save()
-        test_client2 = Client.new("Ruby", test_stylist.id())
+        test_client2 = Client.new("Ruby", test_stylist.id(), 2)
         test_client2.save()
         expect(test_stylist.clients()).to(eq([test_client, test_client2]))
       end
