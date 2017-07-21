@@ -21,6 +21,11 @@ post("/stylists") do
   stylist.save
   erb(:index)
 end
+get("/stylists") do
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:stylists)
+end
 post("/clients") do
     @stylists =Stylist.all()
     name = params.fetch("name")
@@ -29,6 +34,11 @@ post("/clients") do
     @client = Client.new(name, stylist_id, nil)
     @client.save()
     erb(:index)
+end
+get("/clients") do
+  @stylists = Stylist.all()
+  @clients = Client.all()
+  erb(:clients)
 end
 get("/stylists/:id") do
  @stylists = Stylist.all()
