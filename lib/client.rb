@@ -1,9 +1,10 @@
 class Client
-  attr_reader(:name, :stylist_id)
+  attr_reader(:name, :stylist_id, :id)
 
-  define_method(:initialize) do |name, stylist_id|
+  define_method(:initialize) do |name, stylist_id, id|
     @name = name
     @stylist_id = stylist_id
+    @id = id
   end
 
   define_singleton_method(:all) do
@@ -12,7 +13,8 @@ class Client
     returned_clients.each do |client|
       name = client.fetch("names")
       stylist_id = client.fetch("stylist_id").to_i()
-      clients.push(Client.new(name, stylist_id))
+      id = client.fetch("id").to_i()
+      clients.push(Client.new(name, stylist_id,id))
     end
     clients
   end
@@ -36,11 +38,13 @@ end
 end
 
 define_method(:save) do
-  DB.exec("INSERT INTO clients (names, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
+  result = DB.exec("INSERT INTO clients (names, stylist_id) VALUES ('#{@name}', #{@stylist_id}) RETURNING id;")
+  @id = result.first().fetch("id").to_i()
+
 end
 define_method(:update) do |name|
   @name = name
-  DB.exec("UPDATE clients SET names = '#{@name}' WHERE names = ('#{self.name()}');")
+  DB.exec("UPDATE clients SET names = '#{@name}' WHERE id = ('#{self.id()}');")
 end
 
 end

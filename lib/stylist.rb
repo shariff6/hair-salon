@@ -50,7 +50,7 @@ class Stylist
     clients.each() do |client|
       name = client.fetch("names")
       stylist_id = client.fetch("stylist_id").to_i()
-      stylist_clients.push(Client.new(name,stylist_id))
+      stylist_clients.push(Client.new(name,stylist_id,id))
     end
     stylist_clients
   end
