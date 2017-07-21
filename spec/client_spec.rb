@@ -52,4 +52,14 @@ describe("#delete") do
     expect(Client.all()).to(eq([]))
   end
 end
+describe("#update") do
+  it "updates a client" do
+    test_stylist = Stylist.new("jack", nil)
+    test_stylist.save()
+    test_client = Client.new("Jane", test_stylist.id)
+    test_client.save()
+    test_client.update("john")
+    expect(test_client.name()).to(eq("john"))
+    end
+  end
 end
