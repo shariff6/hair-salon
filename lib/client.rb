@@ -36,6 +36,11 @@ end
 end
 
 define_method(:save) do
-DB.exec("INSERT INTO clients (names, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
+  DB.exec("INSERT INTO clients (names, stylist_id) VALUES ('#{@name}', #{@stylist_id});")
 end
+define_method(:update) do |name|
+  @name = name
+  DB.exec("UPDATE clients SET names = '#{@name}' WHERE names = ('#{self.name()}');")
+end
+
 end
