@@ -42,4 +42,14 @@ it("returns a client by its name") do
   expect(Client.find(test_client2.name())).to(eq(test_client2))
 end
 end
+describe("#delete") do
+  it "deletes a client" do
+    test_stylist = Stylist.new("jack", nil)
+    test_stylist.save()
+    test_client = Client.new("Jane", test_stylist.id)
+    test_client.save()
+    Client.delete(test_client)
+    expect(Client.all()).to(eq([]))
+  end
+end
 end
