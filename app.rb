@@ -13,17 +13,17 @@ get("/") do
 
   erb(:index)
 end
+get("/stylists") do
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:stylists)
+end
 post("/stylists") do
   @clients = Client.all()
   @stylists = Stylist.all()
   name = params.fetch("name")
   stylist = Stylist.new(name, nil)
   stylist.save
-  erb(:index)
-end
-get("/stylists") do
-  @clients = Client.all()
-  @stylists = Stylist.all()
   erb(:stylists)
 end
 post("/clients") do
@@ -33,7 +33,8 @@ post("/clients") do
     @stylist = Stylist.find(stylist_id)
     @client = Client.new(name, stylist_id, nil)
     @client.save()
-    erb(:index)
+    @clienties = @stylist.clients()
+    erb(:stylist)
 end
 get("/clients") do
   @stylists = Stylist.all()
@@ -75,7 +76,8 @@ get("/clients/:name") do
   @client = Client.find(params.fetch("name"))
   nam = params.fetch("new_name")
   @client.update(nam)
-  erb(:success)
+    @clients = Client.all()
+  erb(:clients)
 end
 patch("/stylists/:id") do
   @stylists = Stylist.all()
