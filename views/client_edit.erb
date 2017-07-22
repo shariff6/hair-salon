@@ -1,13 +1,16 @@
-<form action="/clients/<%= @client.name  %>" method="post">
-  <input name="_method" type="hidden" value="delete">
-
-  <button type="submit">Delete Client</button>
-</form>
-<p> <%= @client.name  %></p>
-<form action="/clients/<%= @client.name %>" method="post">
+<h1> <%= @client.name  %></h1>
+<form action="/clients/<%= @client.name %>" method="post" class="form-inline">
   <input name="_method" type="hidden" value="patch">
   <label for="new_name">Rename your client:</label>
-  <input id="new_name" name="new_name" type="text">
+  <input id="new_name" name="new_name" type="text" class="form-control">
 
-  <button type="submit">Update</button>
+  <button type="submit" class = "btn btn-default">Update</button>
+</form>
+
+<hr>
+<form action="/clients/<%= @client.name  %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+<p align="center">
+  <button type="submit" class="btn btn-danger" style="text-align:center;">Delete Client</button>
+</p>
 </form>

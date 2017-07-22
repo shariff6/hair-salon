@@ -1,22 +1,22 @@
 
-  <form action="/stylists" method="post">
-    <label for="name">Assign a name to your stylist:</label>
-    <input id="name" name="name" type="text">
+  <form action="/stylists" method="post" class="form-inline">
+    <label for="name">Add a stylist:</label>
+    <input id="name" name="name" type="text" class = "form-control">
 
-    <button type="submit" id="addStylist">Add stylist</button>
+    <button type="submit" id="addStylist" class="btn btn-default">Add stylist</button>
   </form>
 
-
-  <form action="/clients" method="post">
+<h2>Select A Stylist To Add A Client</h2>
+  <form action="/clients" method="post" class = "form-inline">
     <label for="stylist_id">Select a Stylist</label>
-    <select id='stylist_id' name='stylist_id' type='text'>
+    <select id='stylist_id' name='stylist_id' type='text' class="form-control" style="width:100px">
       <% @stylists.each() do |stylist| %>
         <option value="<%= stylist.id()%>"> <%= stylist.name() %> </option>
       <% end %>
     </select>
 
     <label for="name">Name of the client:</label>
-    <input id="name" name="name" type="text">
+    <input id="name" name="name" type="text" class= "form-control">
 
     <button type="submit">Add client</button>
   </form>

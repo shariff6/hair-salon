@@ -1,13 +1,27 @@
 <h1><%= @stylist.name() %>  </h1>
 
-<h2>Clients;</h2>
+<h2>Clients:</h2>
+
+<% if @clienties.any?() %>
 <ul>
   <% @clienties.each() do |client| %>
     <li><a href="/clients/<%= client.name()%>"><%= client.name() %></a> </li>
     <%end%>
 </ul>
+<% else %>
+<p>This stylist has no client</p>
+<% end %>
+
+<h3>Add A Client</h3>
+<form action="/clients" method="post" class = "form-inline">
+  <input id='stylist_id' name='stylist_id' type='hidden' value="<%= @stylist.id() %>">
+
+  <label for="name">Name of the client:</label>
+  <input id="name" name="name" type="text" class= "form-control">
+
+  <button type="submit" class="btn btn-default">Add client</button>
+</form>
 
 <div class="container">
-  <a href="/">Home</a>
   <a href="/stylists/<%= @stylist.id() %>/edit">Edit This Stylist</a>
 </div>

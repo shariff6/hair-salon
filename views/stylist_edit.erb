@@ -1,12 +1,19 @@
+<h1>
+<%= @stylist.name() %> </h1>
+
+<form action="/stylists/<%= @stylist.id() %>" method="post" class="form-inline">
+  <input name="_method" type="hidden" value="patch">
+  <label for="name">Rename your stylist:</label>
+  <input id="name" name="name" type="text" class= "form-control">
+
+  <button type="submit" class="btn btn-default">Update</button>
+</form>
+
+<hr>
+
+
 <form action="/stylists/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
 
-  <button type="submit">Delete list</button>
-</form>
-<form action="/stylists/<%= @stylist.id() %>" method="post">
-  <input name="_method" type="hidden" value="patch">
-  <label for="name">Rename your stylist:</label>
-  <input id="name" name="name" type="text">
-
-  <button type="submit">Update</button>
+  <button type="submit" class="btn btn-danger">Delete list</button>
 </form>
